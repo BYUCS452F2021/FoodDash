@@ -13,7 +13,7 @@ Our plan is to allow users to:
 Since this project is solely for this class, the main goal is to design and implement a great backend with logical decisions on how we model and store our data.
 
 # Implementation Details
-For our NoSQL Database, we are leaning towards using ...
+For our NoSQL Database, we are leaning towards using a document database (specifically MongoDB). 
 
 # Team
 Team size: 5 (FULL)
