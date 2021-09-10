@@ -21,7 +21,7 @@ Team size: 5 (FULL)
 2. Jordan Lin
 3. Justin Yu
 4. Luqi Deng
-5. Sam 
+5. Sam Meng
 
 # Bolts
 **Business**
