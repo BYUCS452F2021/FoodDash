@@ -1,0 +1,9 @@
+# Link to config file specs: https://cloud.google.com/appengine/docs/standard/java11/config/appref
+runtime: java11
+instance_class: F4
+env_variables:
+    SPRING_PROFILES_ACTIVE: "prod"
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+  max_concurrent_requests: 50
