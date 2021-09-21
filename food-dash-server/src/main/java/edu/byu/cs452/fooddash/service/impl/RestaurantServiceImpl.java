@@ -23,6 +23,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Mono<Restaurant> getRestaurantById(String id) {
+        log.debug("GetRestaurantById called with id {}", id);
         return restaurantDao.findById(id)
                 .switchIfEmpty(Mono.error(new NotFoundException()));
     }

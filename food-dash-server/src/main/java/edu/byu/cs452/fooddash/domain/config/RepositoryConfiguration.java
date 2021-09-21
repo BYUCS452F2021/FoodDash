@@ -17,7 +17,7 @@ import io.r2dbc.spi.ConnectionFactory;
 @EnableR2dbcRepositories
 class RepositoryConfiguration extends AbstractR2dbcConfiguration {
 
-    @Value("sm://db-connection")
+    @Value("${sm://db-connection}")
     private String connectionString;
 
     @Override

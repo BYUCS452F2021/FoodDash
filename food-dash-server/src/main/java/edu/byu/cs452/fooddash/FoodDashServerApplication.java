@@ -1,14 +1,13 @@
 package edu.byu.cs452.fooddash;
 
-import java.io.IOException;
 import java.util.Arrays;
-import com.google.auth.oauth2.GoogleCredentials;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ReactiveElasticsearchRepositoriesAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.reactive.config.EnableWebFlux;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
