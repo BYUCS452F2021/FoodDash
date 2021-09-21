@@ -1,0 +1,8 @@
+steps:
+  - name: 'gcr.io/cloud-builders/mvn:appengine'
+    dir: food-dash-server
+    args:
+      - './run-coverage.sh'
+    entrypoint: bash 
+    env:
+      - 'SPRING_PROFILES_ACTIVE=prod'
