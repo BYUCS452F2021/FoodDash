@@ -12,9 +12,6 @@
 
 You need Maven installed on your machine to run tests prior to making your pull requests. You also need to have Maven using jdk 11 or higher. You can check by running `mvn --version`.
 
-Running `mvn verify` or `mvn test` on your local machine requires that your environment has the two environment variables specified above.
-Make sure you have them in your environment for the commands to run locally.
-
 ## Run tests on authenticated server
 TODO
 
@@ -22,7 +19,7 @@ TODO
 
 ### Procedure to Contribute
 1. Create a new branch for your contributions
-2. Write unit tests for any added code. 
+2. Write unit tests for any added code.
 3. Create a pull request for review. Tag those that should review your code.
 4. CodeClimate will check for code coverage and other issues in the pull request.
 5. CI procedures will also run when a pull request is made. They must pass before code can be merged.
