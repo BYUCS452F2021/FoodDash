@@ -33,7 +33,7 @@
 
 		<!-- Other build plugin dependencies-->
 		<jacoco.version>0.8.6</jacoco.version>
-		<spotless.version>2.17.0</spotless.version>
+		<git-code-format-maven-plugin.version>3.1</git-code-format-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -199,44 +199,31 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.diffplug.spotless</groupId>
-				<artifactId>spotless-maven-plugin</artifactId>
-				<version>${spotless.version}</version>
-				<executions>
-					<execution>
-					  <goals>
-						<goal>apply</goal>
-					  </goals>
-					  <phase>compile</phase>
-					</execution>
-				  </executions>
+				<groupId>com.cosium.code</groupId>
+				<artifactId>git-code-format-maven-plugin</artifactId>
+				<version>${git-code-format-maven-plugin.version}</version>
 				<configuration>
-				  <formats>
-					<!-- you can define as many formats as you want, each is independent -->
-					<format>
-					  <!-- define the files to apply to -->
-					  <includes>
-						<include>*.md</include>
-						<include>.gitignore</include>
-					  </includes>
-					  <!-- define the steps to apply to those files -->
-					  <trimTrailingWhitespace/>
-					  <endWithNewline/>
-					  <indent>
-						<tabs>true</tabs>
-						<spacesPerTab>2</spacesPerTab>
-					  </indent>
-					</format>
-				  </formats>
-				  <!-- define a language-specific format -->
-				  <java>
-					<!-- apply a specific flavor of google-java-format and reflow long strings -->
-					<googleJavaFormat>
-						<style>GOOGLE</style>                       <!-- or AOSP (optional) -->
-						<reflowLongStrings>true</reflowLongStrings> <!-- optional (requires at least 1.8) -->
-					  </googleJavaFormat>
-				  </java>
-				</configuration>
+					<googleJavaFormatOptions>
+					  <aosp>false</aosp>
+					</googleJavaFormatOptions>
+				  </configuration>
+				<executions>
+				  <!-- On commit, format the modified java files -->
+				  <execution>
+					<id>install-formatter-hook</id>
+					<goals>
+					  <goal>install-hooks</goal>
+					</goals>
+				  </execution>
+				  <!-- On Maven verify phase, fail if any file
+				  (including unmodified) is badly formatted -->
+				  <execution>
+					<id>validate-code-format</id>
+					<goals>
+					  <goal>validate-code-format</goal>
+					</goals>
+				  </execution>
+				</executions>
 			  </plugin>
 		</plugins>
 	</build>
