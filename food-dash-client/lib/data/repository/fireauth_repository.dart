@@ -1,6 +1,6 @@
-import 'package:dating_idea/data/data_provider/fireauth_provider.dart';
-import 'package:dating_idea/data/model/response.dart';
-import 'package:dating_idea/data/model/response/register_response.dart';
+import 'package:food_dash/data/data_provider/fireauth_provider.dart';
+import 'package:food_dash/data/model/response.dart';
+import 'package:food_dash/data/model/response/register_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 

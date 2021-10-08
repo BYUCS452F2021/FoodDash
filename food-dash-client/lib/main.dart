@@ -1,4 +1,4 @@
-import 'package:dating_idea/presentation/root/myApp.dart';
+import 'package:food_dash/presentation/root/myApp.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

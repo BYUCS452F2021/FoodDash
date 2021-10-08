@@ -1,5 +1,5 @@
-import 'package:dating_idea/presentation/config/config.dart';
-import 'package:dating_idea/presentation/config/provider/provider.dart';
+import 'package:food_dash/presentation/config/config.dart';
+import 'package:food_dash/presentation/config/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

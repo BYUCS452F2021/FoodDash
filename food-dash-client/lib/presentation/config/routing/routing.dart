@@ -1,14 +1,13 @@
-import 'package:dating_idea/presentation/root/root.dart';
-import 'package:dating_idea/presentation/view/screen/auth/register_screen.dart';
-import 'package:dating_idea/presentation/view/screen/error/error_screen.dart';
-import 'package:dating_idea/presentation/view/screen/home/home_screen.dart';
-import 'package:dating_idea/presentation/view/screen/profile/profile.dart';
-import 'package:dating_idea/presentation/view/screen/screen.dart';
+import 'package:food_dash/presentation/root/root.dart';
+import 'package:food_dash/presentation/view/screen/auth/register_screen.dart';
+import 'package:food_dash/presentation/view/screen/error/error_screen.dart';
+import 'package:food_dash/presentation/view/screen/home/home_screen.dart';
+import 'package:food_dash/presentation/view/screen/profile/profile.dart';
+import 'package:food_dash/presentation/view/screen/screen.dart';
 import 'package:flutter/material.dart';
 
 /// AppRouter define the routing for the app
 class AppRouter {
-
   static const String root = '/';
   static const String loginScreen = '/login-screen';
   static const String registerScreen = '/register-screen';
@@ -38,6 +37,5 @@ class AppRouter {
     }
   }
 
-  void dispose() {
-  }
+  void dispose() {}
 }

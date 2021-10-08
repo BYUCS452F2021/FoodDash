@@ -1,5 +1,5 @@
-name: dating_idea
-description: A dating idea app similar to yelp giving suggestions
+name: food_dash
+description: DoorDash, but no delivery
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

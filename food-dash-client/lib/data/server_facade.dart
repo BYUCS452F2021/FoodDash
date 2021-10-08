@@ -10,7 +10,7 @@ import "package:http/http.dart" as http;
 class ServerFacade {
   static final ServerFacade _singleton = ServerFacade._internal();
   final http.Client _client = http.Client();
-  static final String apiUrl = ''; //TODO: PUT THE API URL HERE
+  static final String apiUrl = 'amiable-archive-326601.wm.r.appspot.com';
   static Map<String, String> headers = {};
   FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -19,7 +19,6 @@ class ServerFacade {
     headers["Content-Type"] = "application/json";
     return _singleton;
   }
-
 
   String _checkResponseBody(http.Response response, int statusCode) {
     if (response.statusCode == statusCode) {

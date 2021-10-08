@@ -1,6 +1,6 @@
-import 'package:dating_idea/data/repository/fireauth_repository.dart';
-import 'package:dating_idea/presentation/view/screen/auth/login_screen.dart';
-import 'package:dating_idea/presentation/view/screen/home/home_screen.dart';
+import 'package:food_dash/data/repository/fireauth_repository.dart';
+import 'package:food_dash/presentation/view/screen/auth/login_screen.dart';
+import 'package:food_dash/presentation/view/screen/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

@@ -1,6 +1,6 @@
-import 'package:dating_idea/bloc/register_cubt/register_cubit.dart';
-import 'package:dating_idea/presentation/config/config.dart';
-import 'package:dating_idea/presentation/config/theming/sample.dart';
+import 'package:food_dash/bloc/register_cubt/register_cubit.dart';
+import 'package:food_dash/presentation/config/config.dart';
+import 'package:food_dash/presentation/config/theming/sample.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

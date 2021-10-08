@@ -1,4 +1,4 @@
-import 'package:dating_idea/data/model/json_converter/user_converter.dart';
+import 'package:food_dash/data/model/json_converter/user_converter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 

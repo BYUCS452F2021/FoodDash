@@ -1,4 +1,4 @@
-import 'package:dating_idea/data/model/response.dart';
+import 'package:food_dash/data/model/response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dating_idea/data/repository/fireauth_repository.dart';
+import 'package:food_dash/data/repository/fireauth_repository.dart';
 import 'package:equatable/equatable.dart';
 
 part 'sign_out_state.dart';

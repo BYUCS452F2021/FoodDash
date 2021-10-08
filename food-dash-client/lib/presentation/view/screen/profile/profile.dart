@@ -1,11 +1,10 @@
-import 'package:dating_idea/presentation/config/theming/sample.dart';
+import 'package:food_dash/presentation/config/theming/sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
   //TODO: pass user to profile page
   // final User idea;
-
 
   ProfileScreen(/*{@required this.idea}*/);
 
@@ -33,7 +32,6 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 10.0,
             ),
-            
           ]),
         ),
       ),

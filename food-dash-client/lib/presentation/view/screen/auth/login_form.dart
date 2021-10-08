@@ -1,7 +1,7 @@
-import 'package:dating_idea/bloc/bloc.dart';
-import 'package:dating_idea/bloc/google_signIn/google_signIn_controller.dart';
-import 'package:dating_idea/presentation/config/config.dart';
-import 'package:dating_idea/presentation/config/theming/sample.dart';
+import 'package:food_dash/bloc/bloc.dart';
+import 'package:food_dash/bloc/google_signIn/google_signIn_controller.dart';
+import 'package:food_dash/presentation/config/config.dart';
+import 'package:food_dash/presentation/config/theming/sample.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -137,11 +137,10 @@ class _LoginFormState extends State<LoginForm> {
       );
   Widget appName() => RichText(
           text: TextSpan(
-            text: 'FoodDash',
-            style: CustomTheme.lightTheme.textTheme.headline2,
-            //style: DefaultTextStyle.of(context).style,
-          )
-  );
+        text: 'FoodDash',
+        style: CustomTheme.lightTheme.textTheme.headline2,
+        //style: DefaultTextStyle.of(context).style,
+      ));
 
   void _googleSign() async {
     final response = await _googleSignInController.googleSignIn();
