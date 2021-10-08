@@ -28,8 +28,8 @@ TODO
 ### Rules
 * Spring allows different profiles that can run. All testing logic should only run and work when the `test` profile is set.
 * Only `WebTestClient` should be used when testing the controllers. [One example can be found here](https://spring.io/guides/gs/reactive-rest-service/)
-* Our code should be using the [Reactive model](https://projectreactor.io/). 
-  [Spring's introduction to it is here](https://spring.io/reactive).
+* Our code should be using the [Reactive model](https://projectreactor.io/).
+	[Spring's introduction to it is here](https://spring.io/reactive).
 
 ## Manual Deploy Project to Google App Engine
 

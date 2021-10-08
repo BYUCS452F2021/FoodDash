@@ -5,11 +5,11 @@ import reactor.core.publisher.Mono;
 
 public interface RestaurantService {
 
-    /**
-     * Return a restaurant by ID.
-     * @param id The id
-     * @return The restaurant matching the ID
-     */
-    Mono<Restaurant> getRestaurantById(String id);
-
+  /**
+   * Return a restaurant by ID.
+   *
+   * @param id The id
+   * @return The restaurant matching the ID
+   */
+  Mono<Restaurant> getRestaurantById(String id);
 }
