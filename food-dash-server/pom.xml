@@ -29,11 +29,11 @@
 		<!-- Google dependencies -->
 		<appengine.plugin.version>2.4.1</appengine.plugin.version>
 		<gcp.sql.connector.version>1.3.3</gcp.sql.connector.version>
-		<!-- <firebase.admin.version>7.1.0</firebase.admin.version>
-		<google.maps.version>0.17.0</google.maps.version> -->
+		<firebase.admin.version>8.1.0</firebase.admin.version>
 
-		<!-- Other -->
+		<!-- Other build plugin dependencies-->
 		<jacoco.version>0.8.6</jacoco.version>
+		<spotless.version>2.17.0</spotless.version>
 	</properties>
 
 	<dependencyManagement>
@@ -108,6 +108,11 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>${firebase.admin.version}</version>
 		</dependency>
 
 		<!-- Swagger Web Documentation Dependencies-->
@@ -193,6 +198,46 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>${spotless.version}</version>
+				<executions>
+					<execution>
+					  <goals>
+						<goal>apply</goal>
+					  </goals>
+					  <phase>compile</phase>
+					</execution>
+				  </executions>
+				<configuration>
+				  <formats>
+					<!-- you can define as many formats as you want, each is independent -->
+					<format>
+					  <!-- define the files to apply to -->
+					  <includes>
+						<include>*.md</include>
+						<include>.gitignore</include>
+					  </includes>
+					  <!-- define the steps to apply to those files -->
+					  <trimTrailingWhitespace/>
+					  <endWithNewline/>
+					  <indent>
+						<tabs>true</tabs>
+						<spacesPerTab>2</spacesPerTab>
+					  </indent>
+					</format>
+				  </formats>
+				  <!-- define a language-specific format -->
+				  <java>
+					<!-- apply a specific flavor of google-java-format and reflow long strings -->
+					<googleJavaFormat>
+						<style>GOOGLE</style>                       <!-- or AOSP (optional) -->
+						<reflowLongStrings>true</reflowLongStrings> <!-- optional (requires at least 1.8) -->
+					  </googleJavaFormat>
+				  </java>
+				</configuration>
+			  </plugin>
 		</plugins>
 	</build>
 </project>
