@@ -1,7 +1,10 @@
 package edu.byu.cs452.fooddash.domain.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,19 +16,14 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Accessors(chain = true)
 @SuperBuilder
+@Table
 public class Restaurant {
-  private String id;
+  
+  @Id
+  private int restaurant_id;
   private String name;
-  private List<String> tags;
-  private String description;
-  private List<String> images;
-  private List<String> reviews;
+  private String address;
+  private String phone_number;
+  private BigDecimal rating;
 
-  public Restaurant addToReviews(String reviewId) {
-    if (reviews == null) {
-      reviews = new ArrayList<>();
-    }
-    reviews.add(reviewId);
-    return this;
-  }
 }
