@@ -1,6 +1,7 @@
 package edu.byu.cs452.fooddash.domain.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -21,4 +22,12 @@ public class User {
   private String name;
   private String address;
   private String phone_number;
+public void addFavoriteRestaurant(Object id) {
+}
+public User(String uid, Object object) {
+}
+public ArrayList<Restaurant> getFavoriteRestaurants() {
+    return null;
+}
+
 }

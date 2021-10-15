@@ -25,5 +25,8 @@ public class Restaurant {
   private String address;
   private String phone_number;
   private BigDecimal rating;
+public Object getId() {
+    return restaurant_id;
+}
 
 }

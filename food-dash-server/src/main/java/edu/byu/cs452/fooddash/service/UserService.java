@@ -21,8 +21,9 @@ public class UserService {
   }
 
   public Mono<User> getUserDetailsById() {
-    return MappingUtils.mapSecurityContextToUid()
-        .flatMap(id -> userDao.findById(id).switchIfEmpty(Mono.just(new User().setUserID(id))));
+    return null;
+    // return MappingUtils.mapSecurityContextToUid()
+    //     .flatMap(id -> userDao.findById(id).switchIfEmpty(Mono.just(new User().setUserID(id))));
   }
 
   public Mono<User> addRestaurantToFav(String restaurantId) {
@@ -58,7 +59,7 @@ public class UserService {
                                 .switchIfEmpty(Mono.error(new NotFoundException()))
                                 .flatMap(
                                     user -> {
-                                      user.getFavoriteRestaurants().remove(restaurant.getId());
+                                      // user.getFavoriteRestaurants().remove(restaurant.getId());
                                       return userDao.save(user);
                                     }))
                     .switchIfEmpty(Mono.error(new NotFoundException())))
