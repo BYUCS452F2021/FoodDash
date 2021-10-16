@@ -1,15 +1,12 @@
 package edu.byu.cs452.fooddash.domain.model;
 
-import java.math.BigDecimal;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
@@ -18,9 +15,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Table
 public class Order {
-  
-  @Id
-  private int order_id;
+
+  @Id private int order_id;
   private int user_id;
   private int status;
 }
