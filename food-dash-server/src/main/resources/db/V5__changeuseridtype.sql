@@ -1,0 +1,13 @@
+ALTER TABLE "Order" DROP CONSTRAINT fk_o_userid;
+
+ALTER TABLE "Order"
+ALTER COLUMN user_id TYPE VARCHAR(255);
+
+ALTER TABLE "User"
+ALTER COLUMN user_id TYPE varchar(255);
+
+
+ALTER TABLE "Order" ADD CONSTRAINT fk_O_UserID
+      FOREIGN KEY(user_id) 
+	  REFERENCES "User"(user_id)
+  	  ON DELETE CASCADE;

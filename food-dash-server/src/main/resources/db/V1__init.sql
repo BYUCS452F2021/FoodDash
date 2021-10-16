@@ -1,3 +1,10 @@
+drop table if exists cartitem;
+drop table if exists "Order";
+drop table if exists "User";
+drop table if exists Food;
+drop table if exists Restaurant;
+
+
 create table Restaurant(
     restaurant_id SERIAL PRIMARY KEY,
     name varchar(255) NOT NULL,

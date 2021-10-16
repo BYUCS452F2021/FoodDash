@@ -40,7 +40,7 @@ public class RestaurantController {
         @ApiResponse(responseCode = "404", description = "Restaurant not found", content = @Content)
       })
   @GetMapping(path = "/{id}")
-  public Mono<Restaurant> getRestaurantById(@PathVariable String id) {
+  public Mono<Restaurant> getRestaurantById(@PathVariable Integer id) {
     return restaurantService.getRestaurantById(id);
   }
 }

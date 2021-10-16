@@ -1,6 +1,5 @@
 package edu.byu.cs452.fooddash.domain.model;
 
-import java.math.BigDecimal;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
