@@ -1,6 +1,5 @@
 package edu.byu.cs452.fooddash.domain.model;
 
-import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,15 +14,11 @@ import org.springframework.data.relational.core.mapping.Table;
 @Accessors(chain = true)
 @SuperBuilder
 @Table
-public class Restaurant {
+public class CartItem {
 
-  @Id private int restaurant_id;
-  private String name;
-  private String address;
-  private String phone_number;
-  private BigDecimal rating;
-
-  public Object getId() {
-    return restaurant_id;
-  }
+  @Id private int cartItem_id;
+  private int order_id;
+  private int food_id;
+  private int quantity;
+  private String notes;
 }

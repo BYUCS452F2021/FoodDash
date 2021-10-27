@@ -15,15 +15,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @Accessors(chain = true)
 @SuperBuilder
 @Table
-public class Restaurant {
+public class Food {
 
-  @Id private int restaurant_id;
+  @Id private int food_id;
+  private int restaurant_id;
   private String name;
-  private String address;
-  private String phone_number;
-  private BigDecimal rating;
-
-  public Object getId() {
-    return restaurant_id;
-  }
+  private BigDecimal price;
 }

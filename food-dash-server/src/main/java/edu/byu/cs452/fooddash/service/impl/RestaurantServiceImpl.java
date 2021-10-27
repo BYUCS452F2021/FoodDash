@@ -21,7 +21,7 @@ public class RestaurantServiceImpl implements RestaurantService {
   }
 
   @Override
-  public Mono<Restaurant> getRestaurantById(String id) {
+  public Mono<Restaurant> getRestaurantById(Integer id) {
     log.debug("GetRestaurantById called with id {}", id);
     return restaurantDao.findById(id).switchIfEmpty(Mono.error(new NotFoundException()));
   }
