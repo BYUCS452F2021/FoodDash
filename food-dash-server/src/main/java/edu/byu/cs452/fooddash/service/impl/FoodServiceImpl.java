@@ -1,7 +1,5 @@
 package edu.byu.cs452.fooddash.service.impl;
 
-import org.springframework.data.r2dbc.repository.Query;
-
 import edu.byu.cs452.fooddash.domain.dao.FoodDao;
 import edu.byu.cs452.fooddash.domain.model.Food;
 import edu.byu.cs452.fooddash.service.FoodService;
