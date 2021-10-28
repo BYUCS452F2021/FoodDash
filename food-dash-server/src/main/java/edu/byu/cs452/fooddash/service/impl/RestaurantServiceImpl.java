@@ -7,6 +7,8 @@ import edu.byu.cs452.fooddash.service.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -25,4 +27,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     log.debug("GetRestaurantById called with id {}", id);
     return restaurantDao.findById(id).switchIfEmpty(Mono.error(new NotFoundException()));
   }
+
+@Override
+public Flux<Restaurant> getAllRestaurants() {
+    return restaurantDao.findAll();
+}
+
+@Override
+public Mono<Restaurant> addRestaurant(Restaurant restaurant) {
+    return restaurantDao.save(restaurant);
+}
 }
