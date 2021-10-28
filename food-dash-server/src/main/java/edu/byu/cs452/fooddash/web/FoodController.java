@@ -21,7 +21,7 @@ public class FoodController {
    }
 
    @GetMapping(path = "/menu/{id}")
-   public Flux<Food> getRestaurantMenu(@PathVariable String restaurantId) {
+   public Flux<Food> getRestaurantMenu(@PathVariable Integer restaurantId) {
      return foodService.getRestaurantMenu(restaurantId);
    }
 }

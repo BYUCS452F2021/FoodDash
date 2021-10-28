@@ -13,7 +13,7 @@ public interface RestaurantService {
    * @param id The id
    * @return The restaurant matching the ID
    */
-  Mono<Restaurant> getRestaurantById(String id);
+  Mono<Restaurant> getRestaurantById(Integer id);
   Flux<Restaurant> getAllRestaurants();
   Mono<Restaurant> addRestaurant(Restaurant restaurant);
 }

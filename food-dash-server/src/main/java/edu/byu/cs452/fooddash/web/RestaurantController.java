@@ -45,7 +45,7 @@ public class RestaurantController {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Restaurant not found", content = @Content)})
     @GetMapping(path = "/{id}")
-    public Mono<Restaurant> getRestaurantById(@PathVariable String id) {
+    public Mono<Restaurant> getRestaurantById(@PathVariable Integer id) {
         return restaurantService.getRestaurantById(id);
     }
 
@@ -55,7 +55,7 @@ public class RestaurantController {
     }
 
     @PostMapping(path = "/{id}")
-    public Flux<Food> getRestaurantMenu(@PathVariable String id) {
+    public Flux<Food> getRestaurantMenu(@PathVariable Integer id) {
         return foodService.getRestaurantMenu(id);
     }
 

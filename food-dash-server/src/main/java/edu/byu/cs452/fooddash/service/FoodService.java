@@ -5,5 +5,5 @@ import reactor.core.publisher.Flux;
 
 
 public interface FoodService {
-   Flux<Food> getRestaurantMenu(String restaurantId);
+   Flux<Food> getRestaurantMenu(Integer restaurantId);
 }

@@ -8,5 +8,5 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 public interface FoodDao extends ReactiveCrudRepository<Food, String> {
    @Query("SELECT * FROM FOOD WHERE restaurant_id = :restaurantId")
-   Flux<Food> getRestaurantMenu(String restaurantId);
+   Flux<Food> getRestaurantMenu(Integer restaurantId);
 }
