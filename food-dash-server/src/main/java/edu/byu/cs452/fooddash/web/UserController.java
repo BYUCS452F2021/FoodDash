@@ -38,7 +38,7 @@ public class UserController {
         @ApiResponse(responseCode = "401", description = "Invalid Auth Header", content = @Content)
       })
   @PutMapping(path = "/favorite/{id}")
-  public Mono<User> addToFav(@PathVariable Integer id) {
+  public Mono<User> addToFav(@PathVariable String id) {
     return userService.addRestaurantToFav(id);
   }
 
@@ -54,7 +54,7 @@ public class UserController {
         @ApiResponse(responseCode = "404", description = "Restaurant not found", content = @Content)
       })
   @DeleteMapping(path = "/favorite/{id}")
-  public Mono<User> deleteFav(@PathVariable Integer id) {
+  public Mono<User> deleteFav(@PathVariable String id) {
     return userService.deleteRestaurantFromFav(id);
   }
 }
