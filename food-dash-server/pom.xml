@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.4</version> <!-- Update Spring Boot Version here -->
+		<version>2.5.7</version> <!-- Update Spring Boot Version here -->
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -20,11 +20,9 @@
 
 		<!-- Update Other Spring Dependencies here when Spring Boot Parent updates -->
 		<!-- https://github.com/springdoc/springdoc-openapi/releases -->
-		<spring.openapi.version>1.5.10</spring.openapi.version>
-		<!-- https://github.com/spring-cloud/spring-cloud-release/releases -->
-		<spring.cloud.version>2020.0.3</spring.cloud.version>
-		<!-- https://github.com/spring-cloud/spring-cloud-gcp/releases -->
-		<spring.cloud.gcp.version>2.0.4</spring.cloud.gcp.version>
+		<spring.openapi.version>1.5.12</spring.openapi.version>
+		<!-- https://github.com/GoogleCloudPlatform/spring-cloud-gcp/releases -->
+		<spring.cloud.gcp.version>2.0.5</spring.cloud.gcp.version>
 
 		<!-- Google dependencies -->
 		<appengine.plugin.version>2.4.1</appengine.plugin.version>
@@ -32,19 +30,12 @@
 		<firebase.admin.version>8.1.0</firebase.admin.version>
 
 		<!-- Other build plugin dependencies-->
-		<jacoco.version>0.8.6</jacoco.version>
+		<jacoco.version>0.8.7</jacoco.version>
 		<git-code-format-maven-plugin.version>3.1</git-code-format-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring.cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 			<dependency>
 				<groupId>com.google.cloud</groupId>
 				<artifactId>spring-cloud-gcp-dependencies</artifactId>
@@ -70,24 +61,8 @@
 			<artifactId>spring-cloud-gcp-starter-secretmanager</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.r2dbc</groupId>
-			<artifactId>r2dbc-postgresql</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.cloud.sql</groupId>
-			<artifactId>cloud-sql-connector-r2dbc-postgres</artifactId>
-			<version>${gcp.sql.connector.version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/name.nkonev.r2dbc-migrate/r2dbc-migrate-spring-boot-starter -->
-		<dependency>
-			<groupId>name.nkonev.r2dbc-migrate</groupId>
-			<artifactId>r2dbc-migrate-spring-boot-starter</artifactId>
-			<version>1.7.0</version>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-data-firestore</artifactId>
 		</dependency>
 
 		<!-- Spring Web Dependencies -->
