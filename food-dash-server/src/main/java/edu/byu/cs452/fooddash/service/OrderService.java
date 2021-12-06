@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface OrderService {
    Mono<Order> addOrder(Order order);
+   Mono<Order> changeOrderStatus(Order order);
 }

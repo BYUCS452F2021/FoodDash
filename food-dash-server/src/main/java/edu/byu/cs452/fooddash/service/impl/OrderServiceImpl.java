@@ -23,4 +23,7 @@ public Mono<Order> addOrder(Order order) {
    return this.orderDao.save(order);
 }
 
-}
+@Override
+public Mono<Order> changeOrderStatus(Order order) {
+   return this.orderDao.save(order);
+}}
