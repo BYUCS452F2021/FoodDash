@@ -1,6 +1,7 @@
 package edu.byu.cs452.fooddash.domain.model;
 
 import com.google.cloud.firestore.annotation.DocumentId;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,12 +14,15 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Accessors(chain = true)
 @SuperBuilder
-public class Restaurant {
+public class Order {
+  public enum Status {
+    PENDING,
+    COMPLETE
+  }
 
   @DocumentId private String id;
-  private String name;
-  private String address;
-  private String phoneNumber;
-  private double rating;
-  private List<Food> menu;
+  private String userId;
+  private Status status;
+  private List<CartItem> cart;
+  private LocalDate orderDate;
 }

@@ -1,8 +1,9 @@
 steps:
-  - name: 'gcr.io/cloud-builders/mvn:appengine'
+  - name: 'maven:3-jdk-11'
     dir: food-dash-server
     args:
       - './run-coverage.sh'
     entrypoint: bash 
     env:
+      - 'MAVEN_VERSION=3-jdk-11'
       - 'SPRING_PROFILES_ACTIVE=prod'

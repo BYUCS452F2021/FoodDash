@@ -1,7 +1,6 @@
 package edu.byu.cs452.fooddash.domain.model;
 
-import com.google.cloud.firestore.annotation.DocumentId;
-import java.util.List;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +12,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Accessors(chain = true)
 @SuperBuilder
-public class Restaurant {
-
-  @DocumentId private String id;
+public class Food {
   private String name;
-  private String address;
-  private String phoneNumber;
-  private double rating;
-  private List<Food> menu;
+  private BigDecimal price;
 }
