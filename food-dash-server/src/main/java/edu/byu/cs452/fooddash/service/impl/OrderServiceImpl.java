@@ -28,12 +28,9 @@ public Mono<Order> addOrder(Order order) {
 @Override
 public Mono<Order> changeOrderStatus(Order order) {
    return this.orderDao.save(order);
-<<<<<<< HEAD
 }
 
 @Override
 public Flux<Order> listOrders() {
    return this.orderDao.findAll();
-=======
->>>>>>> main
 }}

@@ -1,9 +1,6 @@
 package edu.byu.cs452.fooddash.web;
 
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
-=======
->>>>>>> main
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
