@@ -22,6 +22,7 @@ public class Order {
 
   @DocumentId private String id;
   private String userId;
+  private String restaurantName;
   private Status status;
   private List<CartItem> cart;
   private LocalDate orderDate;
