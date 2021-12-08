@@ -27,7 +27,6 @@ public class OrderController {
 
   @PostMapping("/status")
   public Mono<Order> changeOrderStatus(@RequestBody Order order) {
-   System.out.println("I get here"); 
    return this.orderService.changeOrderStatus(order);
   }
 }
