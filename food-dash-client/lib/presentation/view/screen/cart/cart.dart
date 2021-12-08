@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:food_dash/presentation/view/screen/food.dart';
 import 'package:food_dash/presentation/view/screen/home/home_screen.dart';
 import 'package:food_dash/presentation/view/screen/orders_list/orders_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:uuid/uuid.dart';
 
 List<CartItem> cart = List<CartItem>();
 
@@ -10,10 +15,13 @@ class CartItem {
   int id;
   int quantity;
   Food food;
-  CartItem(int id, int quantity, Food food) {
+  String restaurantName;
+
+  CartItem(int id, int quantity, Food food, String restaurantName) {
     this.id = id;
     this.quantity = quantity;
     this.food = food;
+    this.restaurantName = restaurantName;
   }
 }
 
@@ -38,19 +46,10 @@ class CartDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return FutureBuilder<List<Restaurant>>(
-    //   future: _fetchRestaurants(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       List<Restaurant> data = snapshot.data;
-    //       return _jobsListView(data);
-    //     } else if (snapshot.hasError) {
-    //       return Text("${snapshot.error}");
-    //     }
-    //     return CircularProgressIndicator();
-    //   },
-    // );
     double total = 0;
+    String restaurantName =
+        (cart.length > 0) ? cart[0].restaurantName : "Cougareat";
+
     for (int i = 0; i < cart.length; i++) {
       total += cart[i].food.price * cart[i].quantity;
     }
@@ -89,7 +88,8 @@ class CartDetail extends StatelessWidget {
                   child: MaterialButton(
                       height: 50.0,
                       onPressed: () {
-                        _onPressed();
+                        print(restaurantName);
+                        _onPressed(restaurantName);
                         (context as Element).reassemble();
                       },
                       child: new Align(
@@ -109,10 +109,19 @@ class CartDetail extends StatelessWidget {
     //cartListView(cart, context);
   }
 
-  void _onPressed() {
-    order.add(new Order((order.length + 1), 1, new DateTime.now(),
-        "Restaurant Name")); // TO-DO: fix this so that the actual restaurant name goes into the function
+  void _onPressed(String restaurantName) {
+    print(restaurantName);
+    var rng = new Random();
+    String id = Uuid().toString() + rng.nextInt(1000).toString();
+
+    Order order = Order(
+        id: id,
+        status: "PENDING",
+        restaurantName:
+            restaurantName); // TO-DO: fix this so that the actual restaurant name goes into the function
+    _sendOrder(order);
     cart.clear();
+    // cartListView(cart, context);
   }
 
   ListView cartListView(data, mainContext) {
@@ -188,17 +197,6 @@ class CartDetail extends StatelessWidget {
                 (context as Element).reassemble();
               },
             ),
-            // IconButton(
-            //   icon: Icon(
-            //     Icons.delete_forever,
-            //     size: 30.0,
-            //     color: Colors.black,
-            //   ),
-            //   onPressed: () {
-            //     cart.remove(cartitem);
-            //     (context as Element).reassemble();
-            //   },
-            // ),
           ],
         ),
         // onTap: () {
@@ -206,18 +204,37 @@ class CartDetail extends StatelessWidget {
         // },
       );
 
-  // Future<List<Restaurant>> _fetchRestaurants() async {
-  //
-  //   final jobsListAPIUrl = 'https://mock-json-service.glitch.me/';
-  //   final response = await http.get(jobsListAPIUrl);
-  //
-  //   if (response.statusCode == 200) {
-  //     List jsonResponse = json.decode(response.body);
-  //     return jsonResponse.map((job) => new Job.fromJson(job)).toList();
-  //   } else {
-  //     throw Exception('Failed to load jobs from API');
-  //   }
-  // }
+  Future<Order> _sendOrder(Order order) async {
+    print("we send the order here");
+
+    final jobsListAPIUrl =
+        Uri.parse('http://amiable-archive-326601.wm.r.appspot.com/order');
+    final response = await http.post(
+      jobsListAPIUrl,
+      headers: <String, String>{
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer testToken'
+      },
+      body: jsonEncode(<String, String>{
+        "id": order.id,
+        "restaurantName": order.restaurantName,
+        "status": order.status,
+        "userId": "user"
+      }),
+    );
+
+    print("Response= " + response.body);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      return Order.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create order.');
+    }
+  }
 }
 
 class EmptyOrTotal extends StatelessWidget {

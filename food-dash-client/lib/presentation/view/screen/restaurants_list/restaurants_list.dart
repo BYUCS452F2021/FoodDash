@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_dash/presentation/view/screen/home/home_screen.dart';
@@ -13,7 +15,7 @@ class Restaurant {
   final double distance;
   final String phone;
   final double rating;
-  final List<Food> menu;
+  List<Food> menu;
 
   Restaurant(
       {this.id,
@@ -25,16 +27,16 @@ class Restaurant {
       this.menu});
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
-    double dis = 0.4;
+    Random random = new Random();
+
     return Restaurant(
-      id: json['id'],
-      name: json['name'],
-      address: json['address'],
-      distance: dis,
-      phone: json['phone_number'],
-      rating: json['rating'],
-      menu: json['menu'],
-    );
+        id: json['id'],
+        name: json['name'],
+        address: json['address'],
+        distance: (random.nextInt(3) + 0.1).toDouble(),
+        phone: json['phone_number'],
+        rating: json['rating'],
+        menu: (FoodList.fromJson(json['menu']).menu));
   }
 }
 
@@ -143,18 +145,6 @@ class RestaurantsList extends StatelessWidget {
           response.statusCode.toString());
     }
   }
-
-  // List<Restaurant> getRestaurants(){
-  //   List<Restaurant> restaurantList = new List<Restaurant>();
-  //   Restaurant dummy1 = Restaurant(1,"KFC", "800 E 900 F", "2.3", "801-234-5565", "4.5", "kfc@gmail.com");
-  //   Restaurant dummy2 = Restaurant(2,"Pho Plus", "800 E 900 F", "1.5", "801-234-5565", "4.0", "kfc@gmail.com");
-  //   Restaurant dummy3 = Restaurant(3,"J Dawgs", "800 E 900 F", "0.5", "801-234-5565", "4.8", "kfc@gmail.com");
-  //   restaurantList.add(dummy1);
-  //   restaurantList.add(dummy2);
-  //   restaurantList.add(dummy3);
-  //   return restaurantList;
-  // }
-
 }
 
 class RestaurantDetail extends StatelessWidget {
@@ -165,53 +155,37 @@ class RestaurantDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('FoodDash'), // TO DO: ADD RESTAURANT NAME
+          title: Text('FoodDash'),
         ),
-        body: FutureBuilder<Restaurant>(
-            future: _fetchRestaurant(restaurantId),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                Restaurant data = snapshot.data;
-                return foodListView(data.menu);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-            }));
-    // return foodListView(getFoods());
-    // FutureBuilder<Restaurant>(
-    //     future: _fetchRestaurant(restaurantId),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.hasData) {
-    //         Restaurant data = snapshot.data;
-    //         // return Container(
-    //         //     alignment: Alignment.topLeft,
-    //         //     child: Scaffold(
-    //         //       appBar: AppBar(
-    //         //         title: Text(data.name), // TO DO: ADD RESTAURANT NAME
-    //         //       ),
-    //         //       body:
-    //         return foodListView(getFoods());
-    //         // ));
-    //       } else if (snapshot.hasError) {
-    //         return Text("${snapshot.error}");
-    //       }
-    //       return CircularProgressIndicator();
-    //     });
+        body: //foodListView(getFoods()));
+            FutureBuilder<Restaurant>(
+                future: _fetchRestaurant(restaurantId),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    Restaurant data = snapshot.data;
+                    print(data.name);
+                    return foodListView(data.menu, data.name);
+                    // return foodListView(getFoods());
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return CircularProgressIndicator();
+                }));
   }
 
-  ListView foodListView(data) {
+  ListView foodListView(data, restaurantName) {
     if (data == null) {
       return ListView();
     }
     return ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
-          return format(data[index], context);
+          print(restaurantName);
+          return format(data[index], context, restaurantName);
         });
   }
 
-  ListTile format(Food food, context) => ListTile(
+  ListTile format(Food food, context, restaurantName) => ListTile(
         title: Text(food.name,
             style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -237,7 +211,8 @@ class RestaurantDetail extends StatelessWidget {
                 color: Colors.brown[900],
               ),
               onPressed: () {
-                cart.add(CartItem(1, 1, food));
+                print(restaurantName);
+                cart.add(CartItem(1, 1, food, restaurantName));
               },
             ),
           ],
@@ -259,35 +234,6 @@ class RestaurantDetail extends StatelessWidget {
   //     throw Exception('Failed to load jobs from API');
   //   }
   // }
-
-  List<Food> getFoods() {
-    List<Food> foodList = new List<Food>();
-    Food dummy1;
-    Food dummy2;
-    Food dummy3;
-    if (restaurantId == 1) {
-      dummy1 = Food(1, "Fired Chicken", 10.99);
-      dummy2 = Food(1, "Cole Slaw", 2.99);
-      dummy3 = Food(3, "Mashed Potatoes", 2.99);
-    } else if (restaurantId == 2) {
-      dummy1 = Food(1, "Beef Noddle", 9.99);
-      dummy2 = Food(1, "Seafood Noddle", 11.99);
-      dummy3 = Food(3, "Chicken Noddle", 9.99);
-    } else if (restaurantId == 3) {
-      dummy1 = Food(1, "Beef HotDog", 10.99);
-      dummy2 = Food(1, "Pork HotDog", 10.99);
-      dummy3 = Food(3, "Chicken Potatoes", 10.99);
-    } else if (restaurantId == 4) {
-      dummy1 = Food(1, "California Pizza", 10.99);
-      dummy2 = Food(1, "Chicago Pizza", 10.99);
-      dummy3 = Food(3, "New York-Style Pizza", 10.99);
-    }
-
-    foodList.add(dummy1);
-    foodList.add(dummy2);
-    foodList.add(dummy3);
-    return foodList;
-  }
 
   ListTile formatInfoTile(String id, String title, double distance,
           double rating, String phone, context) =>
@@ -329,29 +275,98 @@ class RestaurantDetail extends StatelessWidget {
         },
       );
 
-  Future<Restaurant> _fetchRestaurant(String restaurantID) async {
-    // TO-DO: Implement a fetch restaurant function that grabs the restaurant by its ID
+  // Future<Restaurant> _fetchRestaurant(String restaurantID) async {
+  //   Map<String, String> requestHeaders = {
+  //     'Content-type': 'application/json',
+  //     'Accept': 'application/json',
+  //     'Authorization': 'Bearer testToken'
+  //   };
+
+  //   final jobsListAPIUrl = Uri.parse(
+  //       'http://amiable-archive-326601.wm.r.appspot.com/restaurant/' +
+  //           restaurantId);
+  //   final response = await http.get(jobsListAPIUrl, headers: requestHeaders);
+
+  //   if (response.statusCode == 200) {
+  //     Map<String, dynamic> jsonResponse = json.decode(response.body);
+  //     return jsonResponse
+  //         .map((restaurant) => new Restaurant.fromJson(restaurant)).entries.first;
+  //   } else {
+  //     throw Exception('Failed to load restaurants from API ' +
+  //         response.statusCode.toString());
+  //   }
+  // }
+
+  Future<Restaurant> _fetchRestaurant(String restaurantId) async {
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer testToken'
     };
 
-    final jobsListAPIUrl = Uri.parse(
-        'http://amiable-archive-326601.wm.r.appspot.com/restaurant/' +
-            restaurantId);
+    final jobsListAPIUrl =
+        Uri.parse('http://amiable-archive-326601.wm.r.appspot.com/restaurant');
     final response = await http.get(jobsListAPIUrl, headers: requestHeaders);
     List<Restaurant> rList;
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
-      return jsonResponse
+      rList = jsonResponse
           .map((restaurant) => new Restaurant.fromJson(restaurant))
-          .first;
-      // return Restaurant(restaurantID, "Taco Bell", "1 Hacker Way", 3.4, "8583361959", 4.5);
+          .toList();
     } else {
       throw Exception('Failed to load restaurants from API ' +
           response.statusCode.toString());
     }
+
+    for (int i = 0; i < rList.length; i++) {
+      if (rList[i].menu != null) {
+        List<Food> foods = <Food>[];
+
+        for (int i = 0; i < rList[i].menu.length; i++) {
+          Food food = new Food(
+              name: rList[i].menu.elementAt(i).name,
+              price: rList[i].menu.elementAt(i).price);
+          foods.add(food);
+        }
+
+        rList[i].menu = foods;
+      }
+
+      if (rList[i].id == restaurantId) {
+        print(rList[i].name + "\n" + rList[i].menu.toString());
+        return rList[i];
+      }
+    }
+    return null;
   }
 }
+
+// List<Food> getFoods() {
+  //   List<Food> foodList = new List<Food>();
+  //   Food dummy1;
+  //   Food dummy2;
+  //   Food dummy3;
+  //   if (restaurantId == 1) {
+  //     dummy1 = Food(1, "Fired Chicken", 10.99);
+  //     dummy2 = Food(1, "Cole Slaw", 2.99);
+  //     dummy3 = Food(3, "Mashed Potatoes", 2.99);
+  //   } else if (restaurantId == 2) {
+  //     dummy1 = Food(1, "Beef Noodle", 9.99);
+  //     dummy2 = Food(1, "Seafood Noodle", 11.99);
+  //     dummy3 = Food(3, "Chicken Noddle", 9.99);
+  //   } else if (restaurantId == 3) {
+  //     dummy1 = Food(1, "Beef Hotdog", 10.99);
+  //     dummy2 = Food(1, "Pork Hotdog", 10.99);
+  //     dummy3 = Food(3, "Chicken Potatoes", 10.99);
+  //   } else if (restaurantId == 4) {
+  //     dummy1 = Food(1, "California Pizza", 10.99);
+  //     dummy2 = Food(1, "Chicago Pizza", 10.99);
+  //     dummy3 = Food(3, "New York-Style Pizza", 10.99);
+  //   }
+
+  //   foodList.add(dummy1);
+  //   foodList.add(dummy2);
+  //   foodList.add(dummy3);
+  //   return foodList;
+  // }
