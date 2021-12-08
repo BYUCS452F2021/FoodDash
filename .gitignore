@@ -2,3 +2,8 @@
 target
 .DS_Store
 **/.settings
+food-dash-client/ios/Flutter/Debug.xcconfig
+*.xcconfig
+food-dash-client/ios/Flutter/Debug.xcconfig
+food-dash-client/ios/Flutter/Release.xcconfig
+food-dash-client/ios/Podfile

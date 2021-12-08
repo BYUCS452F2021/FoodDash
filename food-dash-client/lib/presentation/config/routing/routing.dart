@@ -4,6 +4,8 @@ import 'package:food_dash/presentation/view/screen/error/error_screen.dart';
 import 'package:food_dash/presentation/view/screen/home/home_screen.dart';
 import 'package:food_dash/presentation/view/screen/profile/profile.dart';
 import 'package:food_dash/presentation/view/screen/restaurants_list/restaurants_list.dart';
+import 'package:food_dash/presentation/view/screen/orders_list/orders_list.dart';
+import 'package:food_dash/presentation/view/screen/cart/cart.dart';
 import 'package:food_dash/presentation/view/screen/screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,8 @@ class AppRouter {
   static const String homeScreen = '/home-screen';
   static const String profileScreen = '/profile-screen';
   static const String restaurantsListScreen = '/restaurants-list-screen';
+  static const String ordersListScreen = '/orders-list-screen';
+  static const String cartScreen = '/cart-screen';
 
   Route onGenerateRoute(RouteSettings routeSettings) {
     final args = routeSettings.arguments;
@@ -36,6 +40,12 @@ class AppRouter {
         break;
       case restaurantsListScreen:
         return MaterialPageRoute(builder: (_) => RestaurantsListScreen());
+        break;
+      case ordersListScreen:
+        return MaterialPageRoute(builder: (_) => OrdersListScreen());
+        break;
+      case cartScreen:
+        return MaterialPageRoute(builder: (_) => CartScreen());
         break;
       default:
         return MaterialPageRoute(builder: (_) => ErrorScreen());
